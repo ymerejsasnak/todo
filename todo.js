@@ -1,4 +1,6 @@
 (function(){
+
+    const PREFIX = 'myjstodolist-';
     var elements = {toAddItem:   document.getElementById('to-add-item'),
                     addItem:     document.getElementById('add-item'),
                     toDoList:    document.getElementById('todo-list'),
@@ -9,7 +11,11 @@
                     };
     var lists = {todo: [], done: []};
 
+
+
+
     
+    //add li to appropriate ul
     function addItem(list, item) {
         var itemNode = document.createElement('li');
         var textNode = document.createTextNode(item);
@@ -24,12 +30,8 @@
         lists = {todo: [], done: []};
     }
 
-    
-
-
-    
-    //add an element after hitting 'add' button or enter
-    elements.addItem.addEventListener('click', function() {
+    //get new item from text box and add it
+    function newItem() {
         var item = elements.toAddItem.value;
         if (item !== '') {
             lists.todo.push(item)
@@ -37,7 +39,23 @@
             elements.toAddItem.value = '';
         }
         elements.toAddItem.focus();
+    }
+
+    
+
+
+    
+    //add an element after hitting 'add' button
+    elements.addItem.addEventListener('click', function() {
+        newItem();
     });
+
+    //hitting enter on text box adds it too
+    elements.toAddItem.addEventListener('keypress', function(e) {
+        if (e.which === 13) {
+            newItem();
+        }
+    })
 
 
     //remove an element from to do list if clicked on and move it to done list
@@ -48,7 +66,7 @@
         if (itemNode.tagName.toLowerCase() === 'li') {
             lists.done.push(item);
             lists.todo.splice(lists.todo.indexOf(item), 1);
-            addItem(elements.doneList,item)
+            addItem(elements.doneList,item);
             itemNode.parentNode.removeChild(itemNode);
         }
     });
@@ -69,7 +87,7 @@
     //save lists
     elements.saveButton.addEventListener('click', function() {
         var saveName = prompt('Enter a name under which to save this list.');
-        localStorage.setItem(saveName, JSON.stringify(lists));
+        localStorage.setItem(PREFIX + saveName, JSON.stringify(lists));
     });
 
     
@@ -79,7 +97,7 @@
 
         clearLists();        
 
-        lists = JSON.parse(localStorage.getItem(loadName));        
+        lists = JSON.parse(localStorage.getItem(PREFIX + loadName));        
 
         lists.todo.forEach(function(item) {
             addItem(elements.toDoList, item);
@@ -88,7 +106,6 @@
             addItem(elements.doneList, item);
         });
     });
-
 
 
     //clear button 
