@@ -21,6 +21,7 @@
     //add an element after hitting 'add' button
     elements.addItem.addEventListener('click', function() {
         addItem(elements.toDoList, elements.toAddItem.value);
+        elements.toAddItem.value = '';
     });
 
 

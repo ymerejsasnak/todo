@@ -1,0 +1,21 @@
+#to-add-item {
+    display: block;
+    width: 50%;
+    margin: 1% auto 0;
+}
+
+#add-item {
+    display: block;
+    width: 10%;
+    margin: 1% auto;
+}
+
+ul {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+ul li:first-child {
+    font-weight: bold;
+}
