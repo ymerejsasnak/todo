@@ -9,17 +9,27 @@
 <body>
 
     <div id="add-item-container">
-        <input type="text" id="to-add-item"></input>
-        <button id="add-item">Add item</button>
+        <input type="text" id="to-add-item" autofocus></input>
+        <button id="add-item">Add Item</button>
     </div>
 
-    <ul id="todo-list">
-        <li>TO DO:</li>
-    </ul>
+    <div id="options-container">
+        <button id="save">Save List</button>
+        <button id="load">Load List</button>
+        <button id="clear">Clear List</button>
+    </div>
 
-    <ul id="done-list">
-        <li>DONE:</li>
-    </ul>
+    <div id="todo-container" class="list-container">
+        <h1>TO DO</h1>
+        <ul id="todo-list">
+        </ul>
+    </div>
+
+    <div id="done-container" class="list-container">
+        <h1>DONE</h1>
+        <ul id="done-list">
+        </ul>
+    </div>
 
 
     <script src="todo.js"></script>    

@@ -1,9 +1,13 @@
 (function(){
-    var elements = {toAddItem: document.getElementById('to-add-item'),
-                    addItem:  document.getElementById('add-item'),
-                    toDoList: document.getElementById('todo-list'),
-                    doneList: document.getElementById('done-list')
+    var elements = {toAddItem:   document.getElementById('to-add-item'),
+                    addItem:     document.getElementById('add-item'),
+                    toDoList:    document.getElementById('todo-list'),
+                    doneList:    document.getElementById('done-list'),
+                    clearButton: document.getElementById('clear'),
+                    saveButton:  document.getElementById('save'),
+                    loadButton:  document.getElementById('load'),
                     };
+    var lists = {todo: [], done: []};
 
     
     function addItem(list, item) {
@@ -18,19 +22,27 @@
 
 
     
-    //add an element after hitting 'add' button
+    //add an element after hitting 'add' button or enter
     elements.addItem.addEventListener('click', function() {
-        addItem(elements.toDoList, elements.toAddItem.value);
-        elements.toAddItem.value = '';
+        var item = elements.toAddItem.value;
+        if (item !== '') {
+            lists.todo.push(item)
+            addItem(elements.toDoList, item);
+            elements.toAddItem.value = '';
+        }
+        elements.toAddItem.focus();
     });
 
 
     //remove an element from to do list if clicked on and move it to done list
     elements.toDoList.addEventListener('click', function(event) {
         var itemNode = event.target;
+        var item = itemNode.innerText;
 
         if (itemNode.tagName.toLowerCase() === 'li') {
-            addItem(elements.doneList, itemNode.innerText)
+            lists.done.push(item);
+            lists.todo.splice(lists.todo.indexOf(item), 1);
+            addItem(elements.doneList,item)
             itemNode.parentNode.removeChild(itemNode);
         }
     });
@@ -39,12 +51,37 @@
     //delete from done list if clicked
     elements.doneList.addEventListener('click', function(event) {
         var itemNode = event.target;
+        var item = itemNode.innerText;
 
         if(itemNode.tagName.toLowerCase() === 'li') {
+            lists.done.splice(lists.done.indexOf(item), 1);
             itemNode.parentNode.removeChild(itemNode);
         }
-    })
+    });
 
+    
+    //save lists
+    elements.saveButton.addEventListener('click', function() {
+        var saveName = prompt('Enter a name under which to save this list.');
+        localStorage[saveName] = lists;
+    });
+
+    
+    //load saved lists
+    elements.loadButton.addEventListener('click', function() {
+        var loadName = prompt('Enter a name to load those lists.');
+        lists = localStorage[loadName];
+        console.log(lists.todo, lists.done)
+    });
+
+
+
+    //clear both lists 
+    elements.clearButton.addEventListener('click', function() {
+        elements.toDoList.innerHTML = '';
+        elements.doneList.innerHTML = '';
+        lists = {todo: [], done: []};
+    });
 
 
 
