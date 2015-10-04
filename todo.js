@@ -18,6 +18,12 @@
         list.appendChild(itemNode);        
     }
 
+    function clearLists() {
+        elements.toDoList.innerHTML = '';
+        elements.doneList.innerHTML = '';
+        lists = {todo: [], done: []};
+    }
+
     
 
 
@@ -63,24 +69,31 @@
     //save lists
     elements.saveButton.addEventListener('click', function() {
         var saveName = prompt('Enter a name under which to save this list.');
-        localStorage[saveName] = lists;
+        localStorage.setItem(saveName, JSON.stringify(lists));
     });
 
     
     //load saved lists
     elements.loadButton.addEventListener('click', function() {
         var loadName = prompt('Enter a name to load those lists.');
-        lists = localStorage[loadName];
-        console.log(lists.todo, lists.done)
+
+        clearLists();        
+
+        lists = JSON.parse(localStorage.getItem(loadName));        
+
+        lists.todo.forEach(function(item) {
+            addItem(elements.toDoList, item);
+        });
+        lists.done.forEach(function(item) {
+            addItem(elements.doneList, item);
+        });
     });
 
 
 
-    //clear both lists 
+    //clear button 
     elements.clearButton.addEventListener('click', function() {
-        elements.toDoList.innerHTML = '';
-        elements.doneList.innerHTML = '';
-        lists = {todo: [], done: []};
+        clearLists();        
     });
 
 

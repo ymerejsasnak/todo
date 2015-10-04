@@ -39,7 +39,9 @@ h1 {
 li {
     list-style: decimal inside;
     padding-left: 2%;
+    padding-bottom: 1%;
     margin-top: 1%;
+    border-bottom: 1px solid gray;
 }
 
 li:hover {
