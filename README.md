@@ -7,7 +7,6 @@ no libraries!
 
 make saving/loading better
 -have it do various checks when saving/loading
--have a hidden div appear (or drop down list maybe??) with a list of lists to load rather than typing in by memory
 -maybe even have option to combine lists (ie append one list to another...easy)
 
 anything else to add to make it a bit more interesting?

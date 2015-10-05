@@ -18,16 +18,12 @@
 }
 
 #todo-container {
-    float: left;  
+    margin: 0 auto;  
+    width: 50%;
 }
 
-#done-container {
-    float: right;
-}
 
-.list-container {
-    width: 50%;    
-}
+
 
 h1 {
     text-align: center;
@@ -36,11 +32,10 @@ h1 {
     box-sizing: border-box;
 }
 
-li {
+#todo-container li {
     list-style: decimal inside;
-    padding-left: 2%;
-    padding-bottom: 1%;
-    margin-top: 1%;
+    padding: 1% 2% 1%;
+   
     border-bottom: 1px solid gray;
 }
 
@@ -49,13 +44,13 @@ li:hover {
 }
 
 #saved-lists {
-    
-    position: relative;
-    top: 200px;
+    visibility: hidden;
+    position: absolute;
+    top: 100px;
     left: 25%;
     width: 50%;
-    height: 100px;
-    border: 1px solid black;
+    border: 5px solid black;
     background: white;
+    box-shadow: 5px 5px 10px black;
 
 }
