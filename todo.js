@@ -19,10 +19,7 @@
     function addItem(list, item) {
         var itemNode = document.createElement('li');
         var textNode = document.createTextNode(item);
-        var checkBox = document.createElement('input');
-        checkBox.type = 'checkbox';
-        
-        list.appendChild(checkBox); 
+
         itemNode.appendChild(textNode);
         list.appendChild(itemNode);
             
@@ -108,13 +105,12 @@
         clearLists();        
 
         toDoList = JSON.parse(localStorage.getItem(PREFIX + loadName));   
-        console.log(toDoList)     
-
+        
         toDoList.forEach(function(item) {
             addItem(elements.toDoList, item);
         });
         
-        //hide it and remove old names
+        //hide it and remove names
         elements.savedLists.style.visibility = 'hidden';
         elements.savedLists.innerHTML = '';
 
