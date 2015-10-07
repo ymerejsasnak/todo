@@ -11,6 +11,5 @@ make saving/loading better
 
 anything else to add to make it a bit more interesting?
 -maybe an optional description for each item that appears/disappears when user clicks on item or something like that?
--click something to change 'priority' color on items?
 -add little up/down (^ v) buttons to move items?
 

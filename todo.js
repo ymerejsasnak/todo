@@ -88,7 +88,8 @@
             }
         }
 
-        //add names to list to load from (additem function works here too)
+        //make sure list is clear, then add names to list to load from (additem function works here too)
+        elements.savedLists.innerHTML = '';
         listNames.forEach(function(item) {
             addItem(elements.savedLists, item.substring(PREFIX.length));
         });
@@ -112,8 +113,7 @@
         
         //hide it and remove names
         elements.savedLists.style.visibility = 'hidden';
-        elements.savedLists.innerHTML = '';
-
+        
     });
 
 
